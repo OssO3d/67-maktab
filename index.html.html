@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>67-umumiy o‘rta ta’lim maktabi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F3;--surface:#FFFFFF;--ink:#1D2A26;--muted:#5B6862;--line:#DCE1DA;
+  --board:#23423A;--board-ink:#EEF2EC;--chalk:#C9D8CF;--accent:#F2B705;--accent-ink:#2A2200;--link:#1F5E4B;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614;--surface:#18211E;--ink:#E8EEEA;--muted:#9BA9A2;--line:#2A3732;
+    --board:#1B332C;--board-ink:#EEF2EC;--chalk:#AFC3B8;--link:#7FD1B0;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614;--surface:#18211E;--ink:#E8EEEA;--muted:#9BA9A2;--line:#2A3732;
+  --board:#1B332C;--board-ink:#EEF2EC;--chalk:#AFC3B8;--link:#7FD1B0;color-scheme:dark;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Nunito Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:Bitter,Georgia,serif;line-height:1.15;margin:0}
+a{color:var(--link)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.brand{font:800 20px Bitter,serif;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:10px}
+.brand b{background:var(--accent);color:var(--accent-ink);border-radius:6px;padding:2px 9px}
+nav{display:flex;gap:18px;overflow-x:auto}
+nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:15px;white-space:nowrap}
+nav a:hover,nav a:focus-visible{color:var(--ink);text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.hero{background:var(--board);color:var(--board-ink);padding:56px 0 64px}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:800}
+.hero p{color:var(--chalk);max-width:46ch;margin:18px 0 26px;font-size:18px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;padding:12px 22px;border-radius:8px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--board-ink);border:2px solid var(--chalk);margin-left:10px;padding:10px 20px}
+.bell{border:2px dashed var(--chalk);border-radius:14px;padding:22px}
+.bell h2{font-size:22px;margin-bottom:12px}
+.bell ol{list-style:none;margin:0;padding:0}
+.bell li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed rgba(201,216,207,.35);font-variant-numeric:tabular-nums}
+.bell li:last-child{border:0}
+.bell li.now{color:var(--accent);font-weight:700}
+.bell small{display:block;color:var(--chalk);margin-top:10px}
+
+section{padding:64px 0}
+section h2{font-size:clamp(26px,4vw,36px);margin-bottom:10px}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 30px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.stats div{padding:22px 18px;border-right:1px solid var(--line)}
+.stats div:last-child{border:0}
+.stats strong{display:block;font:800 34px Bitter,serif}
+.stats span{color:var(--muted);font-size:15px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.col{border-top:4px solid var(--accent);padding-top:14px}
+.col h3{font-size:21px;margin-bottom:6px}
+.col p{margin:0;color:var(--muted);font-size:16px}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.news article{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}
+.news time{font-weight:700;color:var(--muted)}
+.news h3{font-size:20px;margin-bottom:4px}
+.news p{margin:0;color:var(--muted)}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.person{display:flex;gap:14px;align-items:center}
+.av{width:56px;height:56px;border-radius:50%;background:var(--board);color:var(--board-ink);display:grid;place-items:center;font:700 20px Bitter,serif;flex:none}
+.person b{display:block}.person span{color:var(--muted);font-size:15px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.contact dl{margin:0}.contact dt{font-weight:700;margin-top:12px}.contact dd{margin:0;color:var(--muted)}
+form{display:grid;gap:12px}
+label{font-weight:600;font-size:15px;display:grid;gap:4px}
+input,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%}
+button{font:700 17px "Nunito Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:12px 22px;cursor:pointer;justify-self:start}
+#ok{color:var(--link);font-weight:600;min-height:1.4em;margin:0}
+footer{padding:26px 0 34px;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+@media (max-width:760px){
+  .hero .grid,.contact,.cols,.people{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}.stats div:nth-child(2){border-right:0}.stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .news article{grid-template-columns:1fr;gap:2px}
+  .btn.ghost{margin:10px 0 0}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <a class="brand" href="#"><b>67</b> maktab</a>
+  <nav aria-label="Asosiy menyu"><a href="#maktab">Maktab haqida</a><a href="#talim">Ta’lim</a><a href="#yangilik">Yangiliklar</a><a href="#jamoa">Jamoa</a><a href="#aloqa">Aloqa</a></nav>
+</div></header>
+
+<main>
+<div class="hero"><div class="wrap grid">
+  <div>
+    <h1>67-umumiy o‘rta ta’lim maktabi</h1>
+    <p>Bilim, intizom va g‘amxo‘rlik bir joyda. O‘quvchilarimiz har kuni yangi narsa o‘rganadi, o‘qituvchilarimiz esa ularga yo‘l ko‘rsatadi.</p>
+    <a class="btn" href="#aloqa">Qabulga yozilish</a><a class="btn ghost" href="#maktab">Maktab bilan tanishish</a>
+  </div>
+  <aside class="bell" aria-label="Qo‘ng‘iroq jadvali">
+    <h2>Qo‘ng‘iroq jadvali</h2>
+    <ol id="bells"></ol>
+    <small>Hozirgi dars ajratib ko‘rsatiladi.</small>
+  </aside>
+</div></div>
+
+<section id="maktab"><div class="wrap">
+  <h2>Maktab haqida</h2>
+  <p class="lead">Beruniy tumanidagi maktabimiz mahalladagi oilalar uchun sifatli va xavfsiz ta’lim muhitini yaratadi. Bu yerdagi raqamlarni o‘zingizning ma’lumotlaringizga almashtiring.</p>
+  <div class="stats">
+    <div><strong>477</strong><span>o‘quvchi</span></div>
+    <div><strong>45</strong><span>xodim</span></div>
+    <div><strong>1–11</strong><span>sinflar</span></div>
+    <div><strong>2005</strong><span>tashkil topgan yil</span></div>
+  </div>
+</div></section>
+
+<section id="talim" class="alt"><div class="wrap">
+  <h2>Ta’lim</h2>
+  <p class="lead">Maktabda 1-sinfdan 11-sinfgacha umumiy o‘rta ta’lim dasturi o‘qitiladi va barcha fanlardan to‘garaklar ishlaydi.</p>
+  <div class="cols">
+    <div class="col"><h3>Boshlang‘ich sinflar</h3><p>1–4-sinflar: o‘qish, yozish, matematika va dunyo bilan tanishuv.</p></div>
+    <div class="col"><h3>O‘rta va yuqori sinflar</h3><p>5–11-sinflar: barcha asosiy fanlar umumiy o‘rta ta’lim dasturi bo‘yicha o‘qitiladi.</p></div>
+    <div class="col"><h3>Fan to‘garaklari</h3><p>Barcha fanlardan to‘garaklar bor. O‘quvchilar qiziqishiga qarab qatnashadi.</p></div>
+    <div class="col"><h3>Psixolog</h3><p>Maktab psixologi o‘quvchilarga maslahat va yordam beradi.</p></div>
+  </div>
+</div></section>
+
+<section id="yangilik"><div class="wrap news">
+  <h2>Yangiliklar</h2>
+  <p class="lead">Maktabdagi so‘nggi voqealar.</p>
+  <article><time>1-oktabr</time><div><h3>Ustozlar kuni bayrami o‘tkazildi</h3><p>Ustozlar kuni munosabati bilan maktabda bayram tadbiri o‘tkazildi.</p></div></article>
+</div></section>
+
+<section id="jamoa" class="alt"><div class="wrap">
+  <h2>Maktab jamoasi</h2>
+  <p class="lead">Maktabni boshqaradigan va o‘quvchilarga yordam beradigan xodimlar.</p>
+  <div class="people">
+    <div class="person"><div class="av">LK</div><div><b>Lola Kadirova</b><span>Maktab direktori</span></div></div>
+    <div class="person"><div class="av">AA</div><div><b>Abdullayev Arstanbek</b><span>O‘quv ishlari bo‘yicha direktor o‘rinbosari</span></div></div>
+    <div class="person"><div class="av">DA</div><div><b>Djumabayev Alisher</b><span>Ma’naviy ishlar bo‘yicha direktor o‘rinbosari</span></div></div>
+    <div class="person"><div class="av">QG</div><div><b>Qurbanova Go‘zal</b><span>Maktab psixologi</span></div></div>
+  </div>
+</div></section>
+
+<section id="aloqa"><div class="wrap contact">
+  <div>
+    <h2>Aloqa</h2>
+    <dl>
+      <dt>Manzil</dt><dd>Qoraqalpog‘iston Respublikasi, Beruniy tumani, Qiyat MFY, Baxt ko‘chasi, uy raqamisiz</dd>
+      <dt>Pochta manzili</dt><dd>Beruniy tumani, Qiyat MFY, Baxt ko‘chasi, uy raqamisiz, 230200</dd>
+      <dt>Telefonlar</dt><dd><a href="tel:+998885622469">+998 88 562 24 69</a><br><a href="tel:+998973532616">+998 97 353 26 16</a><br><a href="tel:+998937773160">+998 93 777 31 60</a></dd>
+      <dt>Elektron pochta</dt><dd><a href="mailto:mszosso2003@gmail.com">mszosso2003@gmail.com</a></dd>
+      <dt>Qabul vaqti</dt><dd>Dushanba–juma, 9:00–17:00</dd>
+    </dl>
+  </div>
+  <form id="f" novalidate>
+    <label>Ismingiz<input id="n" autocomplete="name"></label>
+    <label>Telefon raqamingiz<input id="p" type="tel" autocomplete="tel"></label>
+    <label>Xabar<textarea id="m" rows="4"></textarea></label>
+    <button type="submit">Xabar yuborish</button>
+    <p id="ok" role="status"></p>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">© 2026 67-umumiy o‘rta ta’lim maktabi, Beruniy tumani, Qoraqalpog‘iston Respublikasi. Barcha huquqlar himoyalangan.</div></footer>
+
+<script>
+const bells=[["1-dars","08:30","09:15"],["2-dars","09:20","10:05"],["3-dars","10:10","10:55"],["4-dars","11:05","11:50"],["5-dars","11:55","12:40"],["6-dars","12:45","13:30"]];
+const ol=document.getElementById("bells");
+const toMin=t=>{const[a,b]=t.split(":");return +a*60+ +b};
+function draw(){
+  const d=new Date(),n=d.getHours()*60+d.getMinutes();
+  ol.innerHTML=bells.map(b=>`<li class="${n>=toMin(b[1])&&n<toMin(b[2])?"now":""}"><span>${b[0]}</span><span>${b[1]}–${b[2]}</span></li>`).join("");
+}
+draw();setInterval(draw,60000);
+document.getElementById("f").addEventListener("submit",e=>{
+  e.preventDefault();
+  const ok=document.getElementById("ok");
+  if(!document.getElementById("n").value.trim()||!document.getElementById("p").value.trim()){ok.textContent="Ism va telefon raqamini kiriting.";return}
+  ok.textContent="Rahmat! Xabaringiz qabul qilindi.";e.target.reset();
+});
+</script>
+</body>
+</html>
